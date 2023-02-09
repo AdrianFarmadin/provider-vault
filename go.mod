@@ -1,4 +1,4 @@
-module github.com//provider-vault
+module github.com/AdrianFarmadin/provider-vault
 
 go 1.19
 

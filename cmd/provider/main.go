@@ -24,12 +24,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 	"sigs.k8s.io/controller-runtime/pkg/log/zap"
 
-	"github.com//provider-vault/apis"
-	"github.com//provider-vault/apis/v1alpha1"
-	"github.com//provider-vault/config"
-	"github.com//provider-vault/internal/clients"
-	"github.com//provider-vault/internal/controller"
-	"github.com//provider-vault/internal/features"
+	"github.com/AdrianFarmadin/provider-vault/apis"
+	"github.com/AdrianFarmadin/provider-vault/apis/v1alpha1"
+	"github.com/AdrianFarmadin/provider-vault/config"
+	"github.com/AdrianFarmadin/provider-vault/internal/clients"
+	"github.com/AdrianFarmadin/provider-vault/internal/controller"
+	"github.com/AdrianFarmadin/provider-vault/internal/features"
 )
 
 func main() {

@@ -11,7 +11,7 @@ import (
 
 	"github.com/upbound/upjet/pkg/pipeline"
 
-	"github.com//provider-vault/config"
+	"github.com/AdrianFarmadin/provider-vault/config"
 )
 
 func main() {
