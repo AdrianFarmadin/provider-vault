@@ -28,8 +28,9 @@ const (
 )
 
 const (
-	vaultAddress = "address"
-	vaultToken   = "token"
+	vaultAddress     = "address"
+	vaultToken       = "token"
+	vaultAuthLogin   = "auth_login"
 )
 
 // TerraformSetupBuilder builds Terraform a terraform.SetupFn function which
@@ -62,7 +63,7 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		if err != nil {
 			return ps, errors.Wrap(err, errExtractCredentials)
 		}
-		creds := map[string]string{}
+		creds := map[string]any{}
 		if err := json.Unmarshal(data, &creds); err != nil {
 			return ps, errors.Wrap(err, errUnmarshalCredentials)
 		}
@@ -73,6 +74,9 @@ func TerraformSetupBuilder(version, providerSource, providerVersion string) terr
 		}
 		if v, ok := creds[vaultToken]; ok {
 			ps.Configuration[vaultToken] = v
+		}
+		if v, ok := creds[vaultAuthLogin]; ok {
+			ps.Configuration[vaultAuthLogin] = v
 		}
 
 		return ps, nil

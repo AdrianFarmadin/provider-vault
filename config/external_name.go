@@ -9,6 +9,7 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
+	"vault_kubernetes_auth_backend_config": config.TemplatedStringAsIdentifier("backend", "auth/{{ .external_name }}/config"),
 	"vault_kubernetes_auth_backend_role": config.IdentifierFromProvider,
 }
 
