@@ -5,6 +5,7 @@ import (
     "github.com/AdrianFarmadin/provider-vault/config/common"
 )
 
+// Configure adds configurations for approleauth group.
 func Configure(p *config.Provider) {
     p.AddResourceConfigurator("vault_approle_auth_backend_role", func(r *config.Resource) {
         r.ShortGroup = "approleauth"

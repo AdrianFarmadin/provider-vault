@@ -2,6 +2,7 @@ package kubernetesauth
 
 import "github.com/upbound/upjet/pkg/config"
 
+// Configure adds configurations for kubernetesauth group.
 func Configure(p *config.Provider) {
     p.AddResourceConfigurator("vault_kubernetes_auth_backend_config", func(r *config.Resource) {
         r.ShortGroup = "kubernetesauth"

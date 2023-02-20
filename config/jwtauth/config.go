@@ -2,6 +2,7 @@ package jwtauth
 
 import "github.com/upbound/upjet/pkg/config"
 
+// Configure adds configurations for jwtauth group.
 func Configure(p *config.Provider) {
     p.AddResourceConfigurator("vault_jwt_auth_backend", func(r *config.Resource) {
         r.ShortGroup = "jwtauth"

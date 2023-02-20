@@ -7,11 +7,16 @@ import (
 )
 
 const (
+	// SelfPackagePath is the golang path for this package.
 	SelfPackagePath = "github.com/AdrianFarmadin/provider-vault/config/common"
+
+	// PathRoleNameExtractor is the golang path to RoleName extractor
+	// function in this package.
 	PathRoleNameExtractor = SelfPackagePath + ".RoleNameExtractor()"
 
 )
 
+// RoleNameExtractor extracts role name of the resources from "spec.forProvider.roleName"
 func RoleNameExtractor() reference.ExtractValueFn {
 	return func(mg xpresource.Managed) string {
 		paved, err := fieldpath.PaveObject(mg)

@@ -1,5 +1,7 @@
 # Provider Vault
 
+> :warning: Work in progress. No stable release!
+
 `provider-vault` is a [Crossplane](https://crossplane.io/) provider that
 is built using [Upjet](https://github.com/upbound/upjet) code
 generation tools and exposes XRM-conformant managed resources for the
