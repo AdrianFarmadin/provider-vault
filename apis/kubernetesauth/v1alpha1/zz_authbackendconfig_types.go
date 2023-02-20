@@ -11,65 +11,70 @@ import (
 	"k8s.io/apimachinery/pkg/runtime/schema"
 
 	v1 "github.com/crossplane/crossplane-runtime/apis/common/v1"
-
 )
 
-
-
-
 type AuthBackendConfigObservation struct {
-
-
-ID *string `json:"id,omitempty" tf:"id,omitempty"`
+	ID *string `json:"id,omitempty" tf:"id,omitempty"`
 }
-
 
 type AuthBackendConfigParameters struct {
 
+	// Unique name of the kubernetes backend to configure.
+	// +crossplane:generate:reference:type=github.com/AdrianFarmadin/provider-vault/apis/auth/v1alpha1.Backend
+	// +kubebuilder:validation:Optional
+	Backend *string `json:"backend,omitempty" tf:"backend,omitempty"`
 
-// Optional disable JWT issuer validation. Allows to skip ISS validation.
-// +kubebuilder:validation:Optional
-DisableIssValidation *bool `json:"disableIssValidation,omitempty" tf:"disable_iss_validation,omitempty"`
+	// Reference to a Backend in auth to populate backend.
+	// +kubebuilder:validation:Optional
+	BackendRef *v1.Reference `json:"backendRef,omitempty" tf:"-"`
 
-// Optional disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod.
-// +kubebuilder:validation:Optional
-DisableLocalCAJwt *bool `json:"disableLocalCaJwt,omitempty" tf:"disable_local_ca_jwt,omitempty"`
+	// Selector for a Backend in auth to populate backend.
+	// +kubebuilder:validation:Optional
+	BackendSelector *v1.Selector `json:"backendSelector,omitempty" tf:"-"`
 
-// Optional JWT issuer. If no issuer is specified, kubernetes.io/serviceaccount will be used as the default issuer.
-// +kubebuilder:validation:Optional
-Issuer *string `json:"issuer,omitempty" tf:"issuer,omitempty"`
+	// Optional disable JWT issuer validation. Allows to skip ISS validation.
+	// +kubebuilder:validation:Optional
+	DisableIssValidation *bool `json:"disableIssValidation,omitempty" tf:"disable_iss_validation,omitempty"`
 
-// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
-// +kubebuilder:validation:Optional
-KubernetesCACert *string `json:"kubernetesCaCert,omitempty" tf:"kubernetes_ca_cert,omitempty"`
+	// Optional disable defaulting to the local CA cert and service account JWT when running in a Kubernetes pod.
+	// +kubebuilder:validation:Optional
+	DisableLocalCAJwt *bool `json:"disableLocalCaJwt,omitempty" tf:"disable_local_ca_jwt,omitempty"`
 
-// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
-// +kubebuilder:validation:Required
-KubernetesHost *string `json:"kubernetesHost" tf:"kubernetes_host,omitempty"`
+	// Optional JWT issuer. If no issuer is specified, kubernetes.io/serviceaccount will be used as the default issuer.
+	// +kubebuilder:validation:Optional
+	Issuer *string `json:"issuer,omitempty" tf:"issuer,omitempty"`
 
-// Target namespace. (requires Enterprise)
-// +kubebuilder:validation:Optional
-Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+	// PEM encoded CA cert for use by the TLS client used to talk with the Kubernetes API.
+	// +kubebuilder:validation:Optional
+	KubernetesCACert *string `json:"kubernetesCaCert,omitempty" tf:"kubernetes_ca_cert,omitempty"`
 
-// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
-// +kubebuilder:validation:Optional
-PemKeys []*string `json:"pemKeys,omitempty" tf:"pem_keys,omitempty"`
+	// Host must be a host string, a host:port pair, or a URL to the base of the Kubernetes API server.
+	// +kubebuilder:validation:Required
+	KubernetesHost *string `json:"kubernetesHost" tf:"kubernetes_host,omitempty"`
 
-// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
-// +kubebuilder:validation:Optional
-TokenReviewerJwtSecretRef *v1.SecretKeySelector `json:"tokenReviewerJwtSecretRef,omitempty" tf:"-"`
+	// Target namespace. (requires Enterprise)
+	// +kubebuilder:validation:Optional
+	Namespace *string `json:"namespace,omitempty" tf:"namespace,omitempty"`
+
+	// Optional list of PEM-formatted public keys or certificates used to verify the signatures of Kubernetes service account JWTs. If a certificate is given, its public key will be extracted. Not every installation of Kubernetes exposes these keys.
+	// +kubebuilder:validation:Optional
+	PemKeys []*string `json:"pemKeys,omitempty" tf:"pem_keys,omitempty"`
+
+	// A service account JWT used to access the TokenReview API to validate other JWTs during login. If not set the JWT used for login will be used to access the API.
+	// +kubebuilder:validation:Optional
+	TokenReviewerJwtSecretRef *v1.SecretKeySelector `json:"tokenReviewerJwtSecretRef,omitempty" tf:"-"`
 }
 
 // AuthBackendConfigSpec defines the desired state of AuthBackendConfig
 type AuthBackendConfigSpec struct {
 	v1.ResourceSpec `json:",inline"`
-	ForProvider       AuthBackendConfigParameters `json:"forProvider"`
+	ForProvider     AuthBackendConfigParameters `json:"forProvider"`
 }
 
 // AuthBackendConfigStatus defines the observed state of AuthBackendConfig.
 type AuthBackendConfigStatus struct {
 	v1.ResourceStatus `json:",inline"`
-	AtProvider          AuthBackendConfigObservation `json:"atProvider,omitempty"`
+	AtProvider        AuthBackendConfigObservation `json:"atProvider,omitempty"`
 }
 
 // +kubebuilder:object:root=true

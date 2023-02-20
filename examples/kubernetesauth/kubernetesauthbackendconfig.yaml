@@ -1,0 +1,11 @@
+apiVersion: kubernetesauth.vault.upbound.io/v1alpha1
+kind: AuthBackendConfig
+metadata:
+  name: kubernetes
+spec:
+  forProvider:
+    backendRef:
+      name: kubernetes
+    kubernetesHost: localhost
+  providerConfigRef:
+    name: default

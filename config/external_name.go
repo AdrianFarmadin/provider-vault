@@ -9,8 +9,22 @@ import "github.com/upbound/upjet/pkg/config"
 // ExternalNameConfigs contains all external name configurations for this
 // provider.
 var ExternalNameConfigs = map[string]config.ExternalName{
-	"vault_kubernetes_auth_backend_config": config.TemplatedStringAsIdentifier("backend", "auth/{{ .external_name }}/config"),
+	"vault_identity_group": config.IdentifierFromProvider,
+	"vault_identity_group_alias": config.IdentifierFromProvider,
+	"vault_auth_backend": config.IdentifierFromProvider,
+	"vault_kubernetes_auth_backend_config": config.IdentifierFromProvider,
 	"vault_kubernetes_auth_backend_role": config.IdentifierFromProvider,
+	"vault_mount": config.IdentifierFromProvider,
+	"vault_policy": config.IdentifierFromProvider,
+	"vault_audit": config.IdentifierFromProvider,
+	"vault_token": config.IdentifierFromProvider,
+	"vault_jwt_auth_backend": config.IdentifierFromProvider,
+	"vault_jwt_auth_backend_role": config.IdentifierFromProvider,
+	"vault_aws_secret_backend": config.IdentifierFromProvider,
+	"vault_aws_secret_backend_role": config.IdentifierFromProvider,
+	"vault_kv_secret_v2": config.IdentifierFromProvider,
+	"vault_approle_auth_backend_role": config.IdentifierFromProvider,
+	"vault_approle_auth_backend_role_secret_id": config.IdentifierFromProvider,
 }
 
 // ExternalNameConfigurations applies all external name configs listed in the

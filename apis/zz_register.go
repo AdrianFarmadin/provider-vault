@@ -10,18 +10,31 @@ package apis
 import (
 	"k8s.io/apimachinery/pkg/runtime"
 
-	v1alpha1 "github.com/AdrianFarmadin/provider-vault/apis/kubernetesauth/v1alpha1"
-v1alpha1apis "github.com/AdrianFarmadin/provider-vault/apis/v1alpha1"
-v1beta1 "github.com/AdrianFarmadin/provider-vault/apis/v1beta1"
-
+	v1alpha1 "github.com/AdrianFarmadin/provider-vault/apis/approleauth/v1alpha1"
+	v1alpha1auth "github.com/AdrianFarmadin/provider-vault/apis/auth/v1alpha1"
+	v1alpha1awssecret "github.com/AdrianFarmadin/provider-vault/apis/awssecret/v1alpha1"
+	v1alpha1identity "github.com/AdrianFarmadin/provider-vault/apis/identity/v1alpha1"
+	v1alpha1jwtauth "github.com/AdrianFarmadin/provider-vault/apis/jwtauth/v1alpha1"
+	v1alpha1kubernetesauth "github.com/AdrianFarmadin/provider-vault/apis/kubernetesauth/v1alpha1"
+	v1alpha1kv "github.com/AdrianFarmadin/provider-vault/apis/kv/v1alpha1"
+	v1alpha1apis "github.com/AdrianFarmadin/provider-vault/apis/v1alpha1"
+	v1beta1 "github.com/AdrianFarmadin/provider-vault/apis/v1beta1"
+	v1alpha1vault "github.com/AdrianFarmadin/provider-vault/apis/vault/v1alpha1"
 )
 
 func init() {
 	// Register the types with the Scheme so the components can map objects to GroupVersionKinds and back
 	AddToSchemes = append(AddToSchemes,
 		v1alpha1.SchemeBuilder.AddToScheme,
+		v1alpha1auth.SchemeBuilder.AddToScheme,
+		v1alpha1awssecret.SchemeBuilder.AddToScheme,
+		v1alpha1identity.SchemeBuilder.AddToScheme,
+		v1alpha1jwtauth.SchemeBuilder.AddToScheme,
+		v1alpha1kubernetesauth.SchemeBuilder.AddToScheme,
+		v1alpha1kv.SchemeBuilder.AddToScheme,
 		v1alpha1apis.SchemeBuilder.AddToScheme,
 		v1beta1.SchemeBuilder.AddToScheme,
+		v1alpha1vault.SchemeBuilder.AddToScheme,
 	)
 }
 

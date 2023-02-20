@@ -7,8 +7,8 @@ package v1alpha1
 
 import resource "github.com/crossplane/crossplane-runtime/pkg/resource"
 
-// GetItems of this AuthBackendRoleList.
-func (l *AuthBackendRoleList) GetItems() []resource.Managed {
+// GetItems of this SecretV2List.
+func (l *SecretV2List) GetItems() []resource.Managed {
 	items := make([]resource.Managed, len(l.Items))
 	for i := range l.Items {
 		items[i] = &l.Items[i]

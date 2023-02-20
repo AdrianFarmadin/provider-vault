@@ -19,7 +19,6 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 
 	v1alpha1 "github.com/AdrianFarmadin/provider-vault/apis/kubernetesauth/v1alpha1"
-
 )
 
 // Setup adds a controller that reconciles AuthBackendRole managed resources.
@@ -42,7 +41,7 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		managed.WithInitializers(initializers),
 		managed.WithConnectionPublishers(cps...),
 		managed.WithPollInterval(o.PollInterval),
-		)
+	)
 
 	return ctrl.NewControllerManagedBy(mgr).
 		Named(name).

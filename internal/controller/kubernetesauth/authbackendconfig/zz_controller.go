@@ -19,14 +19,12 @@ import (
 	ctrl "sigs.k8s.io/controller-runtime"
 
 	v1alpha1 "github.com/AdrianFarmadin/provider-vault/apis/kubernetesauth/v1alpha1"
-
 )
 
 // Setup adds a controller that reconciles AuthBackendConfig managed resources.
 func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 	name := managed.ControllerName(v1alpha1.AuthBackendConfig_GroupVersionKind.String())
 	var initializers managed.InitializerChain
-	initializers = append(initializers, managed.NewNameAsExternalName(mgr.GetClient()))
 	cps := []managed.ConnectionPublisher{managed.NewAPISecretPublisher(mgr.GetClient(), mgr.GetScheme())}
 	if o.SecretStoreConfigGVK != nil {
 		cps = append(cps, connection.NewDetailsManager(mgr.GetClient(), *o.SecretStoreConfigGVK))
@@ -43,7 +41,7 @@ func Setup(mgr ctrl.Manager, o tjcontroller.Options) error {
 		managed.WithInitializers(initializers),
 		managed.WithConnectionPublishers(cps...),
 		managed.WithPollInterval(o.PollInterval),
-		)
+	)
 
 	return ctrl.NewControllerManagedBy(mgr).
 		Named(name).
